@@ -50,7 +50,7 @@ function buildCityHtml(citySlug) {
   const canonical  = `https://aaroti.com/call-girls-in-${city.replace(/\s+/g, "-")}`;
 
   const title = `No.1 Call Girls in ${cityPretty} ❤️ ₹2999 | ${cityPretty} Call Girl Cash Payment - Aaroti`;
-  const desc  = `Looking for call girls in ${cityPretty}? Our independent ${cityPretty} Call Girl Service near me at the best rates ❤️ ₹2999. No advance payment, verified girls 24×7. Book now on Aaroti!`;
+  const desc  = `No.1 Call Girls in ${cityPretty} at ₹2999. Book independent call girl in ${cityPretty} with no advance payment. Verified girls available 24×7. Call now on Aaroti!`;
   const keywords = [
     `${cityPretty} Call Girls`,
     `Call Girls in ${cityPretty}`,
