@@ -266,10 +266,11 @@ app.get("/login", (req, res) => {
 /* ---------- Sitemap (built once, cached) ---------- */
 app.get("/sitemap.xml", (req, res) => {
   if (!_sitemapXml) {
-    const base = "https://aaroti.com";
+    const base    = "https://aaroti.com";
+    const today   = new Date().toISOString().split("T")[0];
     let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
-    xml += `  <url><loc>${base}/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>\n`;
-    CITIES.forEach(c => { xml += `  <url><loc>${base}/call-girls-in-${c}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>\n`; });
+    xml += `  <url><loc>${base}/</loc><lastmod>${today}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>\n`;
+    CITIES.forEach(c => { xml += `  <url><loc>${base}/call-girls-in-${c}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>\n`; });
     xml += `</urlset>`;
     _sitemapXml = xml;
   }
@@ -281,7 +282,13 @@ app.get("/sitemap.xml", (req, res) => {
 /* ---------- Robots ---------- */
 app.get("/robots.txt", (req, res) => {
   res.setHeader("Content-Type", "text/plain");
-  res.send("User-agent: *\nAllow: /\nSitemap: https://aaroti.com/sitemap.xml\n");
+  res.send(`User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin-login.html
+Disallow: /api/
+Sitemap: https://aaroti.com/sitemap.xml
+`);
 });
 
 /* ---------- Clean city URLs  e.g. /call-girls-in-bangalore ---------- */
