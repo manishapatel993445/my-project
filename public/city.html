@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en-IN" prefix="og: https://ogp.me/ns#">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>City Escorts</title>
+<meta name="description" content="Premium city escort service">
+
+<!-- Robots & Crawlers -->
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="rating" content="General">
+<meta name="Revisit-After" content="1 days">
+<meta name="expires" content="never">
+
+<!-- Geo & Language -->
+<meta name="language" content="en-IN">
+<meta name="content-language" content="en-in">
+<meta name="country" content="India">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">Aaroti Escorts</div>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="#profiles">Profiles</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1 id="cityTitle">City Escorts</h1>
+    <p id="cityHeroSub">Luxury companionship in your selected city.</p>
+    <a href="#profiles" class="hero-btn">Explore Profiles</a>
+  </div>
+</section>
+
+<!-- DYNAMIC CITY SEO 1 -->
+<section id="seo-section-1" style="padding: 60px 20px; text-align: center; max-width: 900px; margin: auto;"></section>
+
+<!-- PROFILES -->
+<section class="profiles" id="profiles">
+  <h2 id="profilesHeading">Available Profiles</h2>
+  <div class="profile-grid" id="cityProfiles">
+    <p style="text-align:center;color:#aaa;">Loading profiles…</p>
+  </div>
+</section>
+
+<!-- DYNAMIC CITY SEO 2 -->
+<section id="seo-section-2" style="padding: 60px 20px 20px; text-align: center; max-width: 900px; margin: auto;"></section>
+<section id="seo-section-3" style="padding: 60px 20px 20px; text-align: center; max-width: 900px; margin: auto;"></section>
+<section id="seo-section-4" style="padding: 40px 20px; text-align: center; max-width: 900px; margin: auto;"></section>
+<section id="seo-section-5" style="padding: 60px 20px 20px; text-align: center; max-width: 900px; margin: auto;"></section>
+<section id="seo-section-6" style="padding: 40px 20px 20px; text-align: center; max-width: 900px; margin: auto;"></section>
+<section id="seo-section-7" style="padding: 40px 20px 60px; text-align: center; max-width: 900px; margin: auto;"></section>
+
+<!-- FLOAT BUTTONS -->
+<div class="floating-buttons">
+  <a href="https://wa.me/919934873293" target="_blank" class="float whatsapp" id="cityFloatWa">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="tel:+919934873293" class="float call" id="cityFloatCall">
+    <i class="fas fa-phone"></i>
+  </a>
+</div>
+
+<footer class="footer">
+  <p id="cityFooter"></p>
+</footer>
+
+<script>
+function esc(s) { const d = document.createElement("div"); d.textContent = String(s||""); return d.innerHTML; }
+// ---- Parse city: server-injected var → clean URL path → query param ----
+const _city = (
+  window.CITY ||
+  (() => { const m = window.location.pathname.match(/\/call-girls-in-([^/]+)/); return m ? m[1].replace(/-/g, " ") : null; })() ||
+  new URLSearchParams(window.location.search).get("name") ||
+  "city"
+).toLowerCase();
+
+const cityPretty = _city.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+const WA_MSG     = "?text=Hi%2C%20Aaroti%20Services";
+
+// ---- Update page metadata, headings, footer ----
+document.title = `Book Call Girls in ${cityPretty} | Escort Service 24×7 - Aaroti`;
+document.getElementById("cityTitle").innerText       = `Book Call Girls in ${cityPretty} | Escort Service 24×7`;
+document.getElementById("cityHeroSub").innerText     = `Are you looking for call girl in ${cityPretty}? Verified independent girls — no advance payment required.`;
+document.getElementById("profilesHeading").innerText = `Call Girls in ${cityPretty}`;
+document.getElementById("cityFooter").innerHTML      = `&copy; ${new Date().getFullYear()} Aaroti Escorts`;
+
+// ---- Initial floating button hrefs (updated by applySettings after API call) ----
+document.getElementById("cityFloatWa").href   = `https://wa.me/919934873293${WA_MSG}`;
+document.getElementById("cityFloatCall").href  = "tel:+919934873293";
+
+// ---- Page fade ----
+document.body.style.opacity    = "0";
+document.body.style.transition = "0.4s ease";
+window.addEventListener("load", () => { document.body.style.opacity = "1"; });
+
+// ---- Inject dynamic SEO sections ----
+document.getElementById("seo-section-1").innerHTML = `
+  <h2 style="color:#d4af37;margin-bottom:14px;font-size:28px;line-height:1.4;">Are you looking for Call Girl in ${cityPretty}?</h2>
+  <p style="color:#ccc;line-height:1.8;margin-bottom:15px;font-size:16px;">
+    We provide you independent call girl in ${cityPretty} with <strong style="color:#d4af37;">no advance payment</strong>, 100% verified girls available 24&times;7. Whether you need a companion for an evening or a full night, our premium escort service in ${cityPretty} is discreet, safe and professional. All girls are manually verified with real photos.
+  </p>
+  <h3 style="color:#d4af37;margin:20px 0 12px;font-size:22px;line-height:1.4;">Call Girls in ${cityPretty} Escort Service &#8377;2999 — Cash Payment on Delivery 24&times;7</h3>
+  <p style="color:#ccc;line-height:1.8;margin-bottom:15px;font-size:16px;">
+    Hello sweetheart, Welcome to ${cityPretty}! If you want to explore this beautiful city with the hottest Call Girls in ${cityPretty}, you are on the right platform. We provide unique and premium escort experiences. Our girls understand every man&apos;s desires and it is our duty to give our clients 100% intimate satisfaction. So that&apos;s why we bring you ${cityPretty}&apos;s most demanding No.1 Call Girl Service.
+  </p>
+  <p style="color:#ccc;line-height:1.8;font-size:16px;">
+    Our ${cityPretty} Escorts Agency hires only professional, well-mannered, and hygienic call girls. They are versatile, talented, high-class, educated girls. Every business-class person wants to choose a trusted ${cityPretty} Call Girl Agency to accomplish their wishes hassle-free. Call us now and book your dream girl.
+  </p>
+`;
+
+document.getElementById("seo-section-2").innerHTML = `
+  <h2 style="color:#d4af37;margin-bottom:20px;font-size:28px;line-height:1.4;">100% Real Hot Photos — Female Escorts in ${cityPretty}</h2>
+  <p style="color:#ccc;line-height:1.8;margin-bottom:15px;font-size:16px;">
+    Everyone wants to see real photos before booking escorts in ${cityPretty}. Many agencies provide fake images — but Aaroti ${cityPretty} Escorts are 100% genuine. We bring you the hottest real photos of verified Escorts in ${cityPretty}. No fake profiles, no hidden charges.
+  </p>
+  <p style="color:#ccc;line-height:1.8;font-size:16px;">
+    All our ${cityPretty} call girls are newly joined with real experience and astonishing figures. Our ${cityPretty} Escorts will give you pleasure you will never forget. Every photo is real and verified — choose your favourite quickly!
+  </p>
+`;
+
+document.getElementById("seo-section-3").innerHTML = `
+  <h2 style="color:#d4af37;margin-bottom:20px;font-size:28px;line-height:1.4;">Best One Night Stand Service in ${cityPretty} — Book Now</h2>
+  <p style="color:#ccc;line-height:1.8;margin-bottom:15px;font-size:16px;">
+    Looking for a unique and intimate experience in ${cityPretty}? We bring you the most demanding One Night Stand Escort Service. Here you get all escort services at very affordable rates. Our talented, mature girls in ${cityPretty} know exactly how to give you mind-blowing pleasure.
+  </p>
+  <p style="color:#ccc;line-height:1.8;font-size:16px;">
+    Fulfill all your fantasies. ${cityPretty} Escorts Service Agency has one motto: genuine One Night Stand Service and maximum happiness for every client.
+  </p>
+`;
+
+document.getElementById("seo-section-4").innerHTML = `
+  <h2 style="color:#d4af37;margin-bottom:20px;font-size:28px;line-height:1.4;">Up to 50% Discount on ${cityPretty} Escort Services</h2>
+  <p style="color:#ccc;line-height:1.8;margin-bottom:15px;font-size:16px;">
+    Your satisfaction is our priority. If you are looking for the perfect female companion in ${cityPretty}, hire our top-notch escort services. These amazing high-class services are now available at up to 50% discount. Choose the girl of your dreams and enjoy the most sensational ${cityPretty} escort service at an unbeatable price.
+  </p>
+  <p style="color:#ccc;line-height:1.8;font-size:16px;">
+    We have different offers and packages available. Book today and save big on ${cityPretty} premium escort services.
+  </p>
+`;
+
+document.getElementById("seo-section-5").innerHTML = `
+  <h2 style="color:#d4af37;margin-bottom:20px;font-size:28px;line-height:1.4;">${cityPretty} Call Girls बुक करके पूरी रात मजे करे</h2>
+  <p style="color:#ccc;line-height:1.8;font-size:16px;">
+    क्या आप ${cityPretty} में अपनी कामुक इच्छा को पूरा करना चाहते हैं? तो अभी बुक करें ${cityPretty} Call Girls जो आपके लिए 24/7 उपलब्ध हैं। हमारे पास अलग-अलग लड़कियों का संग्रह है जो आपकी हर इच्छा पूरी करने में माहिर हैं।
+  </p>
+`;
+
+document.getElementById("seo-section-6").innerHTML = `
+  <h2 style="color:#d4af37;margin-bottom:20px;font-size:28px;line-height:1.4;">Call Girls in ${cityPretty} को तलाश करने का सही उपाय</h2>
+  <p style="color:#ccc;line-height:1.8;margin-bottom:15px;font-size:16px;">
+    आपको अभी तक ${cityPretty} में असली Call Girl WhatsApp number नहीं मिला? हम आपको सही तरीका बताएंगे। Aaroti.com पर आपको 1500+ Real Numbers मिलेंगे। सभी numbers 100% verified हैं।
+  </p>
+  <p style="color:#ccc;line-height:1.8;font-size:16px;">
+    ${cityPretty} में हर रोज़ अलग-अलग लड़कियों से बात करें और दोस्ती करें। Sexy Call girls, Hot Call Girls, Desi bhabhi — सबके real WhatsApp Numbers हमारी website पर मिलेंगे।
+  </p>
+`;
+
+document.getElementById("seo-section-7").innerHTML = `
+  <h2 style="color:#d4af37;margin-bottom:20px;font-size:28px;line-height:1.4;">Newly Married Sexy Bhabhi in ${cityPretty} — WhatsApp for Sensual Pleasure</h2>
+  <p style="color:#ccc;line-height:1.8;font-size:16px;">
+    Bhabhi Escorts Service is very popular in ${cityPretty}. These experienced and mature females understand a man&apos;s desires perfectly. Book our ${cityPretty} Escorts Service and accomplish your dreams. Bhabhi escorts know how to give 100% client satisfaction. Book today in ${cityPretty}!
+  </p>
+`;
+
+// ---- Fetch data from API ----
+async function loadCity() {
+  try {
+    const res  = await fetch("/api/data");
+    const data = await res.json();
+    renderCityProfiles(data.profiles || []);
+    applySettings(data.settings || {});
+  } catch (e) {
+    console.error("Failed to load:", e);
+  }
+}
+
+function mediaTag(url, alt) {
+  if (/\.(mp4|webm|mov|ogg)(\?.*)?$/i.test(url)) {
+    return `<video src="${url}" class="card-media" autoplay loop muted playsinline></video>`;
+  }
+  return `<img src="${url}" alt="${alt}" class="card-media">`;
+}
+
+function renderCityProfiles(profiles) {
+  const container = document.getElementById("cityProfiles");
+  const cityMatch = profiles.filter(p => p.city && p.city.toLowerCase() === _city);
+  const list      = cityMatch.length > 0 ? cityMatch : profiles;
+
+  if (list.length === 0) {
+    container.innerHTML = `
+    <div style="text-align:center;width:100%;padding:30px;grid-column:1/-1;">
+      <h3 style="margin-bottom:10px;">Premium Call Girls in ${cityPretty}</h3>
+      <p style="color:#aaa;margin-bottom:20px;">Contact us directly to book in ${cityPretty}.</p>
+      <a href="https://wa.me/919934873293${WA_MSG}" class="hero-btn whatsapp" target="_blank" id="noProfileWa">WhatsApp Us</a>
+    </div>`;
+    return;
+  }
+
+  container.innerHTML = "";
+  list.forEach(p => {
+    container.innerHTML += `
+    <div class="card">
+      ${mediaTag(p.photo, `Call Girl in ${cityPretty} - ${esc(p.name)}`)}
+      <div class="card-info">
+        <h3>${esc(p.name)}</h3>
+        <p>${esc(p.age)} Years Old</p>
+        <span>${esc(p.price)}</span>
+      </div>
+      <div class="card-hover">
+        <a href="https://wa.me/919934873293${WA_MSG}" target="_blank" class="book-btn whatsapp">Book Now</a>
+        <a href="tel:+919934873293" class="call-btn call">Call</a>
+      </div>
+    </div>`;
+  });
+}
+
+function applySettings(s) {
+  const waNum   = s.mainWa   || "919934873293";
+  const callNum = s.mainCall || "919934873293";
+  const waHref  = `https://wa.me/${waNum}${WA_MSG}`;
+  const callHref = `tel:+${callNum.replace(/[\s-]/g, "")}`;
+
+  document.querySelectorAll(".whatsapp, .book-btn, #noProfileWa").forEach(btn => {
+    if (btn) btn.href = waHref;
+  });
+  document.querySelectorAll(".call, .call-btn").forEach(btn => {
+    if (btn) btn.href = callHref;
+  });
+}
+
+loadCity();
+</script>
+
+</body>
+</html>

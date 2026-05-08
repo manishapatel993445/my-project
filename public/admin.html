@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Aaroti Escorts</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#050505;
+  color:#fff;
+  min-height:100vh;
+}
+
+/* ======= LOGIN VIEW ======= */
+#loginView{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  padding:20px;
+}
+.login-box{
+  width:100%;
+  max-width:420px;
+  background:#111;
+  padding:36px 30px;
+  border-radius:20px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+  border:1px solid rgba(255,255,255,0.07);
+}
+.login-box h2{
+  text-align:center;
+  margin-bottom:28px;
+  font-size:28px;
+  background:linear-gradient(90deg,#d4af37,#f5d76e);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  letter-spacing:1px;
+}
+.login-box input{
+  width:100%;
+  padding:14px 16px;
+  margin-bottom:16px;
+  border:1px solid rgba(255,255,255,0.1);
+  outline:none;
+  border-radius:12px;
+  background:#1a1a1a;
+  color:#fff;
+  font-size:16px;
+  transition:border 0.2s;
+}
+.login-box input:focus{border-color:#d4af37;}
+.login-box button{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:40px;
+  background:linear-gradient(90deg,#c9a227,#f5d76e);
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  color:#000;
+  transition:opacity 0.2s;
+}
+.login-box button:disabled{opacity:0.6;cursor:not-allowed;}
+.login-err{
+  margin-top:14px;
+  text-align:center;
+  color:#ff5e5e;
+  font-size:14px;
+  min-height:20px;
+}
+
+/* ======= DASHBOARD VIEW ======= */
+#dashView{
+  display:none;
+  padding:30px 15px 60px;
+}
+.admin-box{
+  max-width:1000px;
+  margin:auto;
+  background:#111;
+  padding:28px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+.admin-title{
+  text-align:center;
+  margin-bottom:8px;
+  font-size:28px;
+  background:linear-gradient(90deg,#d4af37,#f5d76e);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.top-bar{
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:20px;
+}
+.logout-btn{
+  background:#333;
+  color:#fff;
+  border:1px solid #555;
+  padding:8px 18px;
+  border-radius:20px;
+  cursor:pointer;
+  font-size:14px;
+}
+.logout-btn:hover{background:#444;}
+h2{
+  margin:24px 0 14px;
+  font-size:20px;
+  color:#d4af37;
+  border-bottom:1px solid #222;
+  padding-bottom:8px;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:16px;
+}
+.form-grid input{
+  padding:13px 14px;
+  border:1px solid rgba(255,255,255,0.1);
+  outline:none;
+  border-radius:10px;
+  background:#1a1a1a;
+  color:#fff;
+  font-size:15px;
+  transition:border 0.2s;
+}
+.form-grid input:focus{border-color:#d4af37;}
+.full{grid-column:1/3;}
+.action-btn{
+  padding:13px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(90deg,#c9a227,#f5d76e);
+  font-weight:bold;
+  cursor:pointer;
+  color:#000;
+  font-size:15px;
+  transition:opacity 0.2s;
+}
+.action-btn:hover{opacity:0.88;}
+.list{margin-top:12px;display:grid;gap:12px;}
+.item{
+  background:#1a1a1a;
+  padding:14px 16px;
+  border-radius:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  border:1px solid rgba(255,255,255,0.06);
+}
+.item img{width:64px;height:64px;object-fit:cover;border-radius:10px;}
+.red-btn{
+  background:#ff4d4d;
+  color:#fff;
+  border:none;
+  padding:8px 16px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:14px;
+}
+.red-btn:hover{background:#e03030;}
+.edit-btn{
+  background:#2a6aad;
+  color:#fff;
+  border:none;
+  padding:8px 16px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:14px;
+}
+.edit-btn:hover{background:#1e55aa;}
+.edit-form{
+  background:#222;
+  border-radius:12px;
+  padding:14px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  width:100%;
+}
+.edit-form input{
+  padding:10px 12px;
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;
+  background:#1a1a1a;
+  color:#fff;
+  font-size:14px;
+  outline:none;
+}
+.edit-form input:focus{border-color:#d4af37;}
+.edit-form .full{grid-column:1/3;}
+@media(max-width:600px){.edit-form{grid-template-columns:1fr;}.edit-form .full{grid-column:auto;}}
+hr{border:1px solid #1e1e1e;margin:28px 0;}
+.status-msg{
+  text-align:center;
+  padding:10px;
+  border-radius:10px;
+  margin-top:12px;
+  font-size:14px;
+  display:none;
+}
+.status-msg.ok{background:#1a3a1a;color:#5dff5d;}
+.status-msg.err{background:#3a1a1a;color:#ff5d5d;}
+@media(max-width:600px){
+  .form-grid{grid-template-columns:1fr;}
+  .full{grid-column:auto;}
+}
+</style>
+</head>
+<body>
+
+<!-- ======= LOGIN VIEW ======= -->
+<div id="loginView">
+  <div class="login-box">
+    <h2>🔒 Admin Login</h2>
+    <input type="text"     id="username" placeholder="Username" autocomplete="username">
+    <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+    <button id="loginBtn" onclick="doLogin()">Login</button>
+    <p class="login-err" id="loginErr"></p>
+  </div>
+</div>
+
+<!-- ======= DASHBOARD VIEW ======= -->
+<div id="dashView">
+<div class="admin-box">
+
+  <h1 class="admin-title">Admin Dashboard</h1>
+
+  <div class="top-bar">
+    <button class="logout-btn" onclick="doLogout()">Logout</button>
+  </div>
+
+  <!-- PROFILES -->
+  <h2>Add Profile</h2>
+  <div class="form-grid">
+    <input type="text" id="name"  placeholder="Name">
+    <input type="text" id="city"  placeholder="City (lowercase, e.g. delhi)">
+    <input type="text" id="age"   placeholder="Age">
+    <input type="text" id="price" placeholder="Price (e.g. ₹8000)" disabled style="opacity:0.4;cursor:not-allowed;">
+    <input type="text" id="photo" placeholder="Image path (images/i2.jpeg)" class="full">
+    <button class="action-btn full" onclick="addProfile()">➕ Add Profile</button>
+  </div>
+  <div class="list" id="profileList"></div>
+
+  <hr>
+
+  <!-- PACKAGES -->
+  <h2>Manage Pricing Table</h2>
+  <div class="form-grid">
+    <input type="text" id="cat"   placeholder="Category Name">
+    <input type="text" id="h2"    placeholder="2 Hours Price">
+    <input type="text" id="h6"    placeholder="6 Hours Price">
+    <input type="text" id="night" placeholder="Full Night Price">
+    <button class="action-btn full" onclick="addPackage()">➕ Add Package</button>
+  </div>
+  <div class="list" id="packageList"></div>
+
+  <hr>
+
+  <!-- SETTINGS -->
+  <h2>Website Contact Numbers</h2>
+  <div class="form-grid">
+    <input type="text" id="mainWa"   placeholder="Main WhatsApp (91XXXXXXXXXX)">
+    <input type="text" id="mainCall" placeholder="Main Call Number (91XXXXXXXXXX)">
+    <button class="action-btn full" onclick="saveSettings()">💾 Save Numbers</button>
+  </div>
+  <div id="settingsMsg" class="status-msg"></div>
+
+</div>
+</div>
+
+<script>
+let siteData = { profiles: [], packages: [], settings: {} };
+
+/* =========================================================
+   VIEW SWITCHING
+   ========================================================= */
+function showLogin()     { document.getElementById("loginView").style.display = "flex"; document.getElementById("dashView").style.display = "none"; }
+function showDashboard() { document.getElementById("loginView").style.display = "none"; document.getElementById("dashView").style.display = "block"; }
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+async function doLogin() {
+  const btn  = document.getElementById("loginBtn");
+  const err  = document.getElementById("loginErr");
+  const user = document.getElementById("username").value.trim();
+  const pass = document.getElementById("password").value;
+
+  if (!user || !pass) { err.textContent = "Please enter username and password."; return; }
+
+  btn.disabled = true; btn.textContent = "Logging in…"; err.textContent = "";
+
+  try {
+    const res  = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ username: user, password: pass })
+    });
+    const data = await res.json();
+    if (res.ok && data.ok) {
+      showDashboard();
+      loadData();
+    } else {
+      err.textContent = data.error || "Invalid credentials.";
+      btn.disabled = false; btn.textContent = "Login";
+    }
+  } catch (e) {
+    err.textContent = "Server error. Try again.";
+    btn.disabled = false; btn.textContent = "Login";
+  }
+}
+
+/* Allow Enter key on login */
+document.addEventListener("keydown", e => {
+  if (e.key === "Enter" && document.getElementById("loginView").style.display !== "none") doLogin();
+});
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+async function doLogout() {
+  await fetch("/api/logout", { method: "POST", credentials: "include" });
+  document.getElementById("username").value = "";
+  document.getElementById("password").value = "";
+  showLogin();
+}
+
+/* =========================================================
+   INIT — check if already logged in
+   ========================================================= */
+async function init() {
+  try {
+    const r = await fetch("/api/me", { credentials: "include" });
+    if (r.ok) { showDashboard(); loadData(); }
+    else       { showLogin(); }
+  } catch (e)  { showLogin(); }
+}
+
+/* =========================================================
+   LOAD DATA
+   ========================================================= */
+async function loadData() {
+  try {
+    const r = await fetch("/api/data");
+    siteData = await r.json();
+    renderProfiles();
+    renderPackages();
+    loadSettingsForm();
+    randomizeForm();
+  } catch (e) { console.error("Load error:", e); }
+}
+
+/* =========================================================
+   RANDOM DEFAULTS
+   ========================================================= */
+const _names  = ["Priya","Neha","Ankita","Pooja","Divya","Shreya","Kavya","Ananya","Riya","Nisha","Deepika","Simran","Kajal","Meera","Tara","Sonal","Anjali","Komal","Rani","Sapna","Sheetal","Monika","Preeti","Sonia","Ritika","Ishita","Nikita","Pallavi","Radhika","Sneha","Swati","Tanvi","Urvashi","Vandana","Naina","Seema","Shilpa","Surbhi","Tina","Varsha","Aisha","Zara","Aliya","Puja","Sofia","Layla","Mia","Aria","Leila","Yasmin"];
+const _cities = ["delhi","mumbai","bangalore","pune","jaipur","hyderabad","kolkata","lucknow","chandigarh","goa","surat","indore","noida","gurgaon","amritsar","dehradun","udaipur","jodhpur","agra","bhopal"];
+
+function randomizeForm() {
+  const name   = _names[Math.floor(Math.random() * _names.length)];
+  const age    = String(Math.floor(Math.random() * 7) + 22);
+  const city   = _cities[Math.floor(Math.random() * _cities.length)];
+  document.getElementById("name").value  = name;
+  document.getElementById("age").value   = age;
+  document.getElementById("city").value  = city;
+}
+
+/* =========================================================
+   PROFILES
+   ========================================================= */
+async function addProfile() {
+  const profile = {
+    name:  document.getElementById("name").value.trim(),
+    city:  document.getElementById("city").value.trim().toLowerCase(),
+    age:   document.getElementById("age").value.trim(),
+    price: document.getElementById("price").value.trim(),
+    photo: document.getElementById("photo").value.trim()
+  };
+  if (!profile.name || !profile.city) { alert("Name and City are required."); return; }
+
+  const r = await fetch("/api/profiles", {
+    method: "PUT", headers: { "Content-Type": "application/json" },
+    credentials: "include", body: JSON.stringify(profile)
+  });
+  if (r.status === 401) { showLogin(); return; }
+  if (r.ok) {
+    const d = await r.json();
+    siteData.profiles.push(d.profile);
+    renderProfiles();
+    document.getElementById("photo").value = "";
+    randomizeForm();
+  }
+}
+
+async function deleteProfile(id) {
+  if (!confirm("Delete this profile?")) return;
+  const r = await fetch(`/api/profiles/${id}`, { method: "DELETE", credentials: "include" });
+  if (r.status === 401) { showLogin(); return; }
+  if (r.ok) { siteData.profiles = siteData.profiles.filter(p => p.id !== id); renderProfiles(); }
+}
+
+function renderProfiles() {
+  const box = document.getElementById("profileList");
+  if (!siteData.profiles.length) { box.innerHTML = `<p style="color:#666;text-align:center;">No profiles yet.</p>`; return; }
+  box.innerHTML = "";
+  siteData.profiles.forEach(p => {
+    box.innerHTML += `
+    <div class="item" id="item-${p.id}">
+      <div style="display:flex;align-items:center;gap:12px;flex:1;">
+        <img src="${p.photo || ''}" onerror="this.style.display='none'">
+        <div>
+          <b>${p.name}</b><br>
+          <span style="color:#aaa;font-size:14px;">${p.city} — ${p.age}y — ${p.price}</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="edit-btn" onclick="editProfile(${p.id})">Edit</button>
+        <button class="red-btn" onclick="deleteProfile(${p.id})">Delete</button>
+      </div>
+    </div>`;
+  });
+}
+
+function editProfile(id) {
+  const p   = siteData.profiles.find(x => x.id === id);
+  const box = document.getElementById(`item-${id}`);
+  box.innerHTML = `
+  <div class="edit-form">
+    <input id="en-${id}"  placeholder="Name">
+    <input id="ec-${id}"  placeholder="City">
+    <input id="ea-${id}"  placeholder="Age">
+    <input id="ep-${id}"  placeholder="Price">
+    <input id="eph-${id}" placeholder="Image URL" class="full">
+    <button class="action-btn" onclick="saveEdit(${id})">💾 Save</button>
+    <button class="red-btn"   onclick="renderProfiles()">Cancel</button>
+  </div>`;
+  document.getElementById(`en-${id}`).value  = p.name  || "";
+  document.getElementById(`ec-${id}`).value  = p.city  || "";
+  document.getElementById(`ea-${id}`).value  = p.age   || "";
+  document.getElementById(`ep-${id}`).value  = p.price || "";
+  document.getElementById(`eph-${id}`).value = p.photo || "";
+}
+
+async function saveEdit(id) {
+  const updated = {
+    name:  document.getElementById(`en-${id}`).value.trim(),
+    city:  document.getElementById(`ec-${id}`).value.trim().toLowerCase(),
+    age:   document.getElementById(`ea-${id}`).value.trim(),
+    price: document.getElementById(`ep-${id}`).value.trim(),
+    photo: document.getElementById(`eph-${id}`).value.trim()
+  };
+  const r = await fetch(`/api/profiles/${id}`, {
+    method: "PUT", headers: { "Content-Type": "application/json" },
+    credentials: "include", body: JSON.stringify(updated)
+  });
+  if (r.status === 401) { showLogin(); return; }
+  if (r.ok) {
+    const d = await r.json();
+    const idx = siteData.profiles.findIndex(p => p.id === id);
+    siteData.profiles[idx] = d.profile;
+    renderProfiles();
+  }
+}
+
+/* =========================================================
+   PACKAGES
+   ========================================================= */
+async function addPackage() {
+  const pkg = {
+    category: document.getElementById("cat").value.trim(),
+    h2:       document.getElementById("h2").value.trim(),
+    h6:       document.getElementById("h6").value.trim(),
+    night:    document.getElementById("night").value.trim()
+  };
+  if (!pkg.category) { alert("Category name is required."); return; }
+  const r = await fetch("/api/packages", {
+    method: "PUT", headers: { "Content-Type": "application/json" },
+    credentials: "include", body: JSON.stringify(pkg)
+  });
+  if (r.status === 401) { showLogin(); return; }
+  if (r.ok) {
+    const d = await r.json();
+    siteData.packages.push(d.pkg);
+    renderPackages();
+    ["cat","h2","h6","night"].forEach(id => document.getElementById(id).value = "");
+  }
+}
+
+async function deletePackage(id) {
+  if (!confirm("Delete this package?")) return;
+  const r = await fetch(`/api/packages/${id}`, { method: "DELETE", credentials: "include" });
+  if (r.status === 401) { showLogin(); return; }
+  if (r.ok) { siteData.packages = siteData.packages.filter(p => p.id !== id); renderPackages(); }
+}
+
+function renderPackages() {
+  const box = document.getElementById("packageList");
+  if (!siteData.packages.length) { box.innerHTML = `<p style="color:#666;text-align:center;">No packages yet.</p>`; return; }
+  box.innerHTML = "";
+  siteData.packages.forEach(p => {
+    box.innerHTML += `
+    <div class="item">
+      <div>
+        <b>${p.category}</b><br>
+        <span style="color:#aaa;font-size:14px;">2h: ${p.h2} | 6h: ${p.h6} | Night: ${p.night}</span>
+      </div>
+      <button class="red-btn" onclick="deletePackage(${p.id})">Delete</button>
+    </div>`;
+  });
+}
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+function loadSettingsForm() {
+  const s = siteData.settings || {};
+  document.getElementById("mainWa").value   = s.mainWa   || "";
+  document.getElementById("mainCall").value = s.mainCall || "";
+}
+
+async function saveSettings() {
+  const settings = {
+    mainWa:   document.getElementById("mainWa").value.trim(),
+    mainCall: document.getElementById("mainCall").value.trim()
+  };
+  const r = await fetch("/api/settings", {
+    method: "PUT", headers: { "Content-Type": "application/json" },
+    credentials: "include", body: JSON.stringify(settings)
+  });
+  const msg = document.getElementById("settingsMsg");
+  msg.style.display = "block";
+  if (r.ok) {
+    siteData.settings = settings;
+    msg.textContent = "✅ Contact numbers saved successfully!";
+    msg.className   = "status-msg ok";
+  } else {
+    msg.textContent = "❌ Failed to save.";
+    msg.className   = "status-msg err";
+    if (r.status === 401) showLogin();
+  }
+  setTimeout(() => { msg.style.display = "none"; }, 3000);
+}
+
+/* =========================================================
+   START
+   ========================================================= */
+init();
+</script>
+
+</body>
+</html>
