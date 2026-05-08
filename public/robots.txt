@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin.html
+Disallow: /admin-login.html
+Disallow: /api/
+Sitemap: https://aaroti.com/sitemap.xml
