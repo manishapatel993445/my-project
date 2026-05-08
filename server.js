@@ -283,7 +283,6 @@ app.get("/sitemap.xml", (req, res) => {
 app.get("/robots.txt", (req, res) => {
   res.setHeader("Content-Type", "text/plain");
   res.send(`User-agent: *
-Allow: /
 Disallow: /admin.html
 Disallow: /admin-login.html
 Disallow: /api/
