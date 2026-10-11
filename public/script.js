@@ -110,16 +110,14 @@ function renderPriceTable(packages) {
   container.innerHTML = html;
 }
 
-// ========= APPLY SETTINGS (phone numbers + telegram) =========
+// ========= APPLY SETTINGS (phone numbers) =========
 function applySettings(settings) {
   const waNum    = settings.mainWa || "919934873293";
   const callNum  = settings.mainCall || "919934873293";
-  const tgLink   = settings.mainTg || `https://t.me/+${waNum}`;
   const waHref   = `https://wa.me/${waNum}${WA_MSG}`;
   const callHref = `tel:+${callNum.replace(/[\s-]/g, "")}`;
   document.querySelectorAll(".whatsapp, .bookNowBtn").forEach(btn => { btn.href = waHref; });
   document.querySelectorAll(".call").forEach(btn => { btn.href = callHref; });
-  document.querySelectorAll(".telegram, #floatTg, #heroTgBtn").forEach(btn => { btn.href = tgLink; });
 }
 
 // ========= RUN =========

@@ -156,7 +156,6 @@ function buildCityHtml(citySlug) {
   const data       = readData();
   const phone      = (data.settings && data.settings.mainCall) ? data.settings.mainCall : "919934873293";
   const wa         = (data.settings && data.settings.mainWa)   ? data.settings.mainWa   : "919934873293";
-  const tgLink     = (data.settings && data.settings.mainTg)   ? data.settings.mainTg   : `https://t.me/+${wa}`;
   const canonical  = `https://aaroti.com/call-girls-in-${city.replace(/\s+/g, "-")}`;
   const waMsg      = "?text=Hi%2C%20Aaroti%20Services";
 
@@ -320,20 +319,6 @@ function buildCityHtml(citySlug) {
     </div>
   `;
   html = html.replace(/<div id="trust-banner-container"[^>]*>[\s\S]*?<\/div>/i, `<div id="trust-banner-container" style="padding:10px 14px;">${trustBannerHtml}</div>`);
-
-  const tgBannerHtml = `
-    <div class="telegram-banner">
-      <div class="telegram-banner-text">
-        <i class="fab fa-telegram-plane telegram-banner-icon"></i>
-        <div>
-          <div class="telegram-banner-title">Join Aaroti VIP Telegram Channel 🔥</div>
-          <div class="telegram-banner-sub">Daily real uncensored photos in ${cityPretty}, new arrivals &amp; direct 24×7 booking</div>
-        </div>
-      </div>
-      <a href="${tgLink}" target="_blank" rel="noopener noreferrer" class="telegram-banner-btn" id="cityTgBtn">Join Telegram</a>
-    </div>
-  `;
-  html = html.replace(/<div id="telegram-banner-container"[^>]*>[\s\S]*?<\/div>/i, `<div id="telegram-banner-container" style="padding:0 14px;">${tgBannerHtml}</div>`);
 
   // 3. Pre-render Profiles Grid
   const allProfiles = data.profiles || [];
@@ -577,7 +562,6 @@ function buildCityHtml(citySlug) {
   html = html.replace(/<p id="cityFooter">[\s\S]*?<\/p>/i, `<p id="cityFooter">&copy; ${new Date().getFullYear()} Aaroti Escorts — No.1 Call Girl &amp; Escort Service in ${cityPretty}. All rights reserved. 18+ Only.</p>`);
   html = html.replace(/href="https:\/\/wa\.me\/[0-9]+[^"]*"/g, `href="https://wa.me/${wa}${waMsg}"`);
   html = html.replace(/href="tel:\+[0-9]+"/g, `href="tel:+${phone}"`);
-  html = html.replace(/href="https:\/\/t\.me\/[^"]*"/g, `href="${tgLink}"`);
 
   _cityCache.set(city, html);
   return html;
@@ -590,7 +574,6 @@ function buildIndexHtml() {
   const data = readData();
   const phone = (data.settings && data.settings.mainCall) ? data.settings.mainCall : "919934873293";
   const wa    = (data.settings && data.settings.mainWa)   ? data.settings.mainWa   : "919934873293";
-  const tgLink = (data.settings && data.settings.mainTg) ? data.settings.mainTg   : `https://t.me/+${wa}`;
   const waMsg = "?text=Hi%2C%20Aaroti%20Services";
 
   const allProfiles = data.profiles || [];
@@ -638,7 +621,6 @@ function buildIndexHtml() {
 
   html = html.replace(/href="https:\/\/wa\.me\/[0-9]+[^"]*"/g, `href="https://wa.me/${wa}${waMsg}"`);
   html = html.replace(/href="tel:\+[0-9]+"/g, `href="tel:+${phone}"`);
-  html = html.replace(/href="https:\/\/t\.me\/[^"]*"/g, `href="${tgLink}"`);
   return html;
 }
 
