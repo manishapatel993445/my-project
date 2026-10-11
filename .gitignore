@@ -2,4 +2,7 @@ node_modules/
 .env
 *.log
 service-account.json
+gsc-indexing-push-log.json
+gsc-live-report.json
+
 
