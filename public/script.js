@@ -1,15 +1,10 @@
 const WA_MSG = "?text=Hi%2C%20Aaroti%20Services";
 function esc(s) { const d = document.createElement("div"); d.textContent = String(s||""); return d.innerHTML; }
 
-// ========= PAGE FADE IN =========
-window.addEventListener("load", () => { document.body.style.opacity = "1"; });
-document.body.style.opacity = "0";
-document.body.style.transition = "0.4s ease";
-
 // ========= FOOTER =========
 const footer = document.getElementById("footerText");
 if (footer) {
-  footer.innerHTML = `&copy; 2021 Aaroti Escorts | Best Call Girl`;
+  footer.innerHTML = `&copy; ${new Date().getFullYear()} Aaroti Escorts | No.1 Call Girl &amp; Escort Service`;
 }
 
 // ========= FAQ ACCORDION =========

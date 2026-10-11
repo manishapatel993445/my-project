@@ -772,3 +772,176 @@ grid-template-columns:repeat(4,1fr);
 grid-template-columns:repeat(3,1fr);
 }
 }
+
+/* ===== SEO Localities & Categories Pills ===== */
+.seo-tags-section{
+  padding:50px 20px 25px;
+  max-width:1000px;
+  margin:auto;
+  text-align:center;
+}
+.seo-tags-section h2{
+  color:#d4af37;
+  font-size:28px;
+  margin-bottom:12px;
+  line-height:1.4;
+}
+.seo-tags-section p{
+  color:#aaa;
+  font-size:15px;
+  margin-bottom:20px;
+}
+.seo-tags-wrap{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+}
+.seo-tag-pill{
+  display:inline-block;
+  background:rgba(212,175,55,0.08);
+  border:1px solid rgba(212,175,55,0.35);
+  color:#f1c40f;
+  padding:10px 18px;
+  border-radius:30px;
+  font-size:14px;
+  font-weight:600;
+  text-decoration:none;
+  transition:all .25s ease;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+.seo-tag-pill:hover{
+  background:#d4af37;
+  color:#000;
+  transform:translateY(-2px);
+  box-shadow:0 6px 14px rgba(212,175,55,0.4);
+}
+
+/* ===== Trust & Anti-Scam Banner (User Psychology Conversion) ===== */
+.trust-badge-banner{
+  max-width:1000px;
+  margin:25px auto 10px;
+  padding:16px 20px;
+  background:linear-gradient(135deg,rgba(212,175,55,0.12),rgba(15,15,15,0.95));
+  border:1px solid rgba(212,175,55,0.4);
+  border-radius:14px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.5);
+}
+@media(min-width:640px){
+  .trust-badge-banner{
+    grid-template-columns:1fr 1fr;
+  }
+}
+@media(min-width:992px){
+  .trust-badge-banner{
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+.trust-badge-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#f5f5f5;
+  font-size:14px;
+  font-weight:600;
+  line-height:1.4;
+}
+.trust-badge-item span.icon{
+  font-size:20px;
+  color:#d4af37;
+  flex-shrink:0;
+}
+
+/* ===== AEO 4-Step Booking Guide ===== */
+.booking-steps-section{
+  padding:50px 20px 30px;
+  max-width:1000px;
+  margin:auto;
+  text-align:center;
+}
+.booking-steps-section h2{
+  color:#d4af37;
+  font-size:28px;
+  margin-bottom:12px;
+}
+.booking-steps-section p.sub{
+  color:#aaa;
+  font-size:15px;
+  margin-bottom:30px;
+}
+.steps-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:18px;
+  text-align:left;
+}
+@media(min-width:640px){
+  .steps-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+@media(min-width:992px){
+  .steps-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+.step-card{
+  background:#111;
+  border:1px solid rgba(212,175,55,0.25);
+  border-radius:14px;
+  padding:22px 18px;
+  position:relative;
+  transition:all .3s ease;
+}
+.step-card:hover{
+  border-color:#d4af37;
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(212,175,55,0.15);
+}
+.step-num{
+  display:inline-flex;
+  width:36px;
+  height:36px;
+  background:#d4af37;
+  color:#000;
+  border-radius:50%;
+  font-weight:800;
+  font-size:16px;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:14px;
+}
+.step-card h3{
+  color:#fff;
+  font-size:18px;
+  margin-bottom:8px;
+}
+.step-card p{
+  color:#bbb;
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* ===== Verified Card Badge ===== */
+.card-badge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:rgba(0,180,80,0.9);
+  color:#fff;
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.4);
+  z-index:3;
+}
+.card{
+  position:relative;
+}
