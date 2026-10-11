@@ -156,6 +156,7 @@ function buildCityHtml(citySlug) {
   const data       = readData();
   const phone      = (data.settings && data.settings.mainCall) ? data.settings.mainCall : "919934873293";
   const wa         = (data.settings && data.settings.mainWa)   ? data.settings.mainWa   : "919934873293";
+  const tgLink     = (data.settings && data.settings.mainTg)   ? data.settings.mainTg   : `https://t.me/+${wa}`;
   const canonical  = `https://aaroti.com/call-girls-in-${city.replace(/\s+/g, "-")}`;
   const waMsg      = "?text=Hi%2C%20Aaroti%20Services";
 
@@ -295,6 +296,10 @@ function buildCityHtml(citySlug) {
     `<meta property="og:image" content="https://aaroti.com/images/i1.jpeg">`,
     `<meta property="og:site_name" content="Aaroti">`,
     `<meta property="og:locale" content="en_IN">`,
+    `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:title" content="${escapeHtml(title)}">`,
+    `<meta name="twitter:description" content="${escapeHtml(desc)}">`,
+    `<meta name="twitter:image" content="https://aaroti.com/images/i1.jpeg">`,
     `<script type="application/ld+json">${JSON.stringify(schemaGraph)}</script>`,
     `<script>window.CITY="${city.replace(/"/g, '\\"')}";</script>`
   ].join("\n");
@@ -315,6 +320,20 @@ function buildCityHtml(citySlug) {
     </div>
   `;
   html = html.replace(/<div id="trust-banner-container"[^>]*>[\s\S]*?<\/div>/i, `<div id="trust-banner-container" style="padding:10px 14px;">${trustBannerHtml}</div>`);
+
+  const tgBannerHtml = `
+    <div class="telegram-banner">
+      <div class="telegram-banner-text">
+        <i class="fab fa-telegram-plane telegram-banner-icon"></i>
+        <div>
+          <div class="telegram-banner-title">Join Aaroti VIP Telegram Channel 🔥</div>
+          <div class="telegram-banner-sub">Daily real uncensored photos in ${cityPretty}, new arrivals &amp; direct 24×7 booking</div>
+        </div>
+      </div>
+      <a href="${tgLink}" target="_blank" rel="noopener noreferrer" class="telegram-banner-btn" id="cityTgBtn">Join Telegram</a>
+    </div>
+  `;
+  html = html.replace(/<div id="telegram-banner-container"[^>]*>[\s\S]*?<\/div>/i, `<div id="telegram-banner-container" style="padding:0 14px;">${tgBannerHtml}</div>`);
 
   // 3. Pre-render Profiles Grid
   const allProfiles = data.profiles || [];
@@ -558,6 +577,7 @@ function buildCityHtml(citySlug) {
   html = html.replace(/<p id="cityFooter">[\s\S]*?<\/p>/i, `<p id="cityFooter">&copy; ${new Date().getFullYear()} Aaroti Escorts — No.1 Call Girl &amp; Escort Service in ${cityPretty}. All rights reserved. 18+ Only.</p>`);
   html = html.replace(/href="https:\/\/wa\.me\/[0-9]+[^"]*"/g, `href="https://wa.me/${wa}${waMsg}"`);
   html = html.replace(/href="tel:\+[0-9]+"/g, `href="tel:+${phone}"`);
+  html = html.replace(/href="https:\/\/t\.me\/[^"]*"/g, `href="${tgLink}"`);
 
   _cityCache.set(city, html);
   return html;
@@ -570,6 +590,7 @@ function buildIndexHtml() {
   const data = readData();
   const phone = (data.settings && data.settings.mainCall) ? data.settings.mainCall : "919934873293";
   const wa    = (data.settings && data.settings.mainWa)   ? data.settings.mainWa   : "919934873293";
+  const tgLink = (data.settings && data.settings.mainTg) ? data.settings.mainTg   : `https://t.me/+${wa}`;
   const waMsg = "?text=Hi%2C%20Aaroti%20Services";
 
   const allProfiles = data.profiles || [];
@@ -582,7 +603,8 @@ function buildIndexHtml() {
     });
     const profilesHtml = unique.map(p => `
       <div class="card">
-        ${renderMediaTag(p.photo, p.name)}
+        <span class="card-badge"><i class="fas fa-check-circle"></i> 100% Verified</span>
+        ${renderMediaTag(p.photo, `${p.name} - Call Girl in India`)}
         <div class="card-info">
           <h3>${escapeHtml(p.name)}</h3>
           <p>${escapeHtml(p.age || "24")} Years Old</p>
@@ -616,6 +638,7 @@ function buildIndexHtml() {
 
   html = html.replace(/href="https:\/\/wa\.me\/[0-9]+[^"]*"/g, `href="https://wa.me/${wa}${waMsg}"`);
   html = html.replace(/href="tel:\+[0-9]+"/g, `href="tel:+${phone}"`);
+  html = html.replace(/href="https:\/\/t\.me\/[^"]*"/g, `href="${tgLink}"`);
   return html;
 }
 
@@ -808,10 +831,43 @@ app.get("/robots.txt", (req, res) => {
 Disallow: /admin.html
 Disallow: /admin-login.html
 Disallow: /api/
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
 Sitemap: https://aaroti.com/sitemap.xml
 `);
 });
 
+/* ---------- Ping Search Engines ---------- */
+app.get("/api/ping-sitemap", async (req, res) => {
+  const sitemapUrl = encodeURIComponent("https://aaroti.com/sitemap.xml");
+  const targets = [
+    `https://www.bing.com/ping?sitemap=${sitemapUrl}`
+  ];
+  const results = [];
+  for (const url of targets) {
+    try {
+      const response = await fetch(url, { headers: { "User-Agent": "AarotiBot/1.0" } });
+      results.push({ url, status: response.status });
+    } catch (e) {
+      results.push({ url, error: e.message });
+    }
+  }
+  res.json({ ok: true, results, sitemap: "https://aaroti.com/sitemap.xml" });
+});
 
 /* ---------- Catch-all: serve index.html for SPA-style routing ---------- */
 app.get("*", (req, res) => {

@@ -43,6 +43,7 @@ async function loadSiteData() {
 function renderProfiles(profiles) {
   const grid = document.getElementById("profileGrid");
   if (!grid) return;
+  if (!grid.innerHTML.includes("Loading profiles")) return; // Keep high-speed SSR content
 
   const seen   = new Set();
   const unique = profiles.filter(p => {
@@ -60,6 +61,7 @@ function renderProfiles(profiles) {
   unique.forEach(p => {
     grid.innerHTML += `
     <div class="card">
+      <span class="card-badge"><i class="fas fa-check-circle"></i> 100% Verified</span>
       ${mediaTag(p.photo, esc(p.name))}
       <div class="card-info">
         <h3>${esc(p.name)}</h3>
@@ -78,6 +80,7 @@ function renderProfiles(profiles) {
 function renderPriceTable(packages) {
   const container = document.getElementById("priceTableContainer");
   if (!container) return;
+  if (!container.innerHTML.includes("Loading packages")) return; // Keep SSR content
 
   if (packages.length === 0) {
     container.innerHTML = `<p style="text-align:center;color:#aaa;">No packages available yet.</p>`;
@@ -107,12 +110,16 @@ function renderPriceTable(packages) {
   container.innerHTML = html;
 }
 
-// ========= APPLY SETTINGS (phone numbers) =========
+// ========= APPLY SETTINGS (phone numbers + telegram) =========
 function applySettings(settings) {
-  const waHref   = `https://wa.me/${settings.mainWa || "919934873293"}${WA_MSG}`;
-  const callHref = `tel:+${(settings.mainCall || "919934873293").replace(/[\s-]/g, "")}`;
+  const waNum    = settings.mainWa || "919934873293";
+  const callNum  = settings.mainCall || "919934873293";
+  const tgLink   = settings.mainTg || `https://t.me/+${waNum}`;
+  const waHref   = `https://wa.me/${waNum}${WA_MSG}`;
+  const callHref = `tel:+${callNum.replace(/[\s-]/g, "")}`;
   document.querySelectorAll(".whatsapp, .bookNowBtn").forEach(btn => { btn.href = waHref; });
   document.querySelectorAll(".call").forEach(btn => { btn.href = callHref; });
+  document.querySelectorAll(".telegram, #floatTg, #heroTgBtn").forEach(btn => { btn.href = tgLink; });
 }
 
 // ========= RUN =========
